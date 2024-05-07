@@ -7,17 +7,19 @@ public class Employee {
     private double payRate;
 
     private double totalPay;
-    private double regularHours;
-    private double overTime;
+    private double  hours;
 
-    public Employee(int employeeID, String name, String department, double payRate, double totalPay, double regularHours, double overTime) {
+
+
+    public Employee(int employeeID, String name, String department, double payRate, double totalPay, double hours) {
         this.employeeID = employeeID;
         this.name = name;
         this.department = department;
         this.payRate = payRate;
         this.totalPay = totalPay;
-        this.regularHours = regularHours;
-        this.overTime = overTime;
+        this.hours = hours;
+
+
     }
 
     public int getEmployeeID() {
@@ -61,20 +63,29 @@ public class Employee {
     }
 
     public double getRegularHours() {
-        return regularHours;
+        return hours;
     }
 
-    public void setRegularHours(double regularHours) {
-        this.regularHours = regularHours;
+    public double setHours(double hours) {
+        this.hours = hours;
+        int regularHours = 40;
+        if (hours < regularHours){
+            return hours;
+        }else {
+            return regularHours;
+        }
+
+    }
+    public double getOverTime(){
+       int regularHours = 40;
+       if(hours <= regularHours) {
+           return 0;
+       }else {
+           return ( hours - regularHours);
+       }
+
     }
 
-    public double getOverTime() {
-        return overTime;
     }
-
-    public void setOverTime(double overTime) {
-        this.overTime = overTime;
-    }
-}
 
 

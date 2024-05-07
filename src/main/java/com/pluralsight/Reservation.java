@@ -45,7 +45,8 @@ public class Reservation {
         this.roomType = roomType;
     }
     private double roomTotal( String roomType, int numberOfNight){
-        double perNightPrice ;
+
+        double perNightPrice = 0;
 
             if(roomType.equalsIgnoreCase("king")){
                 perNightPrice = 139.00;}
