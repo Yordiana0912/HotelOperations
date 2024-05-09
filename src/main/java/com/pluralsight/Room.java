@@ -1,57 +1,56 @@
 package com.pluralsight;
 
 public class Room {
-    private int numberOfBeds ;
+    private int numberOfBeds;
     private double price;
-    private String occupied;
-    private boolean dirtyRoom;
-    private int availableRoom;
+    private boolean occupied;
+    private boolean dirty;
+    private boolean availableRoom;
     private int roomNumber;
     private String roomType;
 
-    public Room( int numberOfBeds, double price, String occupied, int dirtyRoom, int availableRoom) {
+    public Room( int numberOfBeds, double price) {
         this.numberOfBeds = numberOfBeds;
         this.price = price;
-        this.occupied = occupied;
-        this.dirtyRoom = dirtyRoom;
-        this.availableRoom = availableRoom;
-        this.roomNumber = roomNumber;
-
-
-
+        this.occupied = false;
+        this.dirty = false;
+        // this is default data // assuming room is clean which is why its false , when it true it mean room is dirty
     }
 
-    public Room(int numberOfBeds, String price, String occupied, String available, String roomType)   {
-    }
 
     public int getRoomNumber() {
-        return roomNumber;
+        return this.roomNumber;
     }
 
     public int getNumberOfBeds() {
-        return numberOfBeds;
+
+        return this.numberOfBeds;
     }
 
     public double getPrice() {
-        return price;
+        return this.price;
     }
 
-    public String getOccupied() {
-        return occupied;
+    public boolean getOccupied() {
+
+        return this.occupied;
     }
 
-    public boolean  getDirtyRoom() {
-        return dirtyRoom;
+    public boolean  getDirty() {
+
+        return this.dirty;
     }
 
-    public int getAvailableRoom() {
-        return availableRoom;
+    public boolean isAvailableRoom() {
+        // below show that as long as it's not occupied and is not dirty will be return available
+        return (!this.occupied && !this.dirty);
     }
 
     // create method to check in / check out/ clean room or dirty room
     public void checkIN() {
+            this.occupied = true;
+            this.dirty = true ;
         if(this.occupied.equals("available")) {
-            this.occupied = "occupied";
             System.out.println("Check in to room " + this.roomNumber );
         }else {
             System.out.println("Room is not Available ");
@@ -59,8 +58,10 @@ public class Room {
     // method to checking out
     }
     public void checkOut(){
+        this.occupied = false;
+
         if (this.occupied.equals("occupied")){
-            this.occupied = "available ";
+            this.occupied = Boolean.parseBoolean("available ");
             System.out.println("Checked out of room " + this.roomNumber);
         }else{
             System.out.println(" No Check out ");
@@ -68,7 +69,7 @@ public class Room {
         }
     public void cleanRoom() {
         if (this.occupied.equals("dirty")){
-            this.occupied = "available";
+            this.occupied = Boolean.parseBoolean("available");
             System.out.println("Room" + this.roomNumber + "cleaned");
         }else {
             System.out.println(" Room is clean");

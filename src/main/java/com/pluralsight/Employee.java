@@ -1,32 +1,40 @@
 package com.pluralsight;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 public class Employee {
-    private int employeeID;
-    private String name;
-    private String department;
+    private String employeeID , name , department;
     private double payRate;
 
     private double totalPay;
     private double  hours;
+    private LocalTime startTime;
 
-
-
-    public Employee(int employeeID, String name, String department, double payRate, double totalPay, double hours) {
+    public Employee(String employeeID, String name, String department, double payRate, double totalPay, double hours) {
         this.employeeID = employeeID;
         this.name = name;
         this.department = department;
         this.payRate = payRate;
-        this.totalPay = totalPay;
         this.hours = hours;
 
 
+
     }
 
-    public int getEmployeeID() {
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(int employeeID) {
+    public void setEmployeeID(String  employeeID) {
         this.employeeID = employeeID;
     }
 
@@ -59,7 +67,7 @@ public class Employee {
     }
 
     public void setTotalPay(double totalPay) {
-        this.totalPay = totalPay;
+        return ;
     }
 
     public double getRegularHours() {
@@ -68,24 +76,26 @@ public class Employee {
 
     public double setHours(double hours) {
         this.hours = hours;
-        int regularHours = 40;
-        if (hours < regularHours){
+        if (this.hours <= 40){
             return hours;
         }else {
-            return regularHours;
+            return 40;
         }
 
     }
     public double getOverTime(){
-       int regularHours = 40;
-       if(hours <= regularHours) {
-           return 0;
-       }else {
-           return ( hours - regularHours);
-       }
+      return  (this.hours > 40) ? this.hours -40: 0;
 
     }
+    public void  punchIn (double startTime){
+        this.startTime = startTime;
 
     }
+    public void punchIn(){
+        LocalDateTime now = LocalDateTime.now();
+        this.startTime = LocalTime.ofSecondOfDay(now.getHour() + now.getMinute());
+    }
+    }
+
 
 

@@ -4,29 +4,25 @@ package com.pluralsight;
 
 public class Reservation {
    private String roomType;
-   private double price;
    private int numberOfNight;
-   private boolean isWeekend;
-   private double reservationTotal;
+   private boolean weekend;
+
 
     public Reservation(String roomType, double price, int numberOfNight, boolean isWeekend, double reservationTotal) {
         this.roomType = roomType;
-        this.price = price;
         this.numberOfNight = numberOfNight;
-        this.isWeekend = isWeekend;
-        this.reservationTotal = reservationTotal;
+        this.weekend = weekend;
+
     }
 
-    public double getReservationTotal() {
-        return reservationTotal;
-    }
 
-    public void setWeekend(boolean weekend) {
-        isWeekend = weekend;
+    public boolean setWeekend(boolean weekend) {
+
+        return this.weekend;
     }
 
     public int getNumberOfNight() {
-        return numberOfNight;
+        return this.numberOfNight;
     }
 
     public void setNumberOfNight(int numberOfNight) {
@@ -34,26 +30,21 @@ public class Reservation {
     }
 
     public double getPrice() {
-        return price;
+        double weekendFactor = (this.weekend) ? 1.10 : 1;
+        // if weekend is select * by 1.10
+        double perNightPrice;
+        if(this.roomType.equalsIgnoreCase("king")){
+            return  perNightPrice = 139.00 * weekendFactor;}
+
+        else (this.roomType.equalsIgnoreCase("double")) {
+            perNightPrice = 124.00 * weekendFactor;
+        }
+
+   public double getReservationTotal(){
+        return this.numberOfNight * this.getPrice()
+        }
+
     }
 
-    public String getRoomType() {
-        return roomType;
-    }
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-    private double roomTotal( String roomType, int numberOfNight){
-
-        double perNightPrice = 0;
-
-            if(roomType.equalsIgnoreCase("king")){
-                perNightPrice = 139.00;}
-
-            else if  (roomType.equalsIgnoreCase("double")) {
-                perNightPrice = 124.00;
-            }
-            return perNightPrice * numberOfNight ;
-    }
 }
